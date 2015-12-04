@@ -139,6 +139,20 @@ module Poseidon
       @offset
     end
 
+    # Causes the next fetch to proceed from this offset, rather than
+    # +next_offset+. The effect is similar to reopening a consumer, but
+    # much faster. Nonetheless, seeks shouldn't be abused because of the
+    # remoteness of Kafka.
+    #
+    # @param [Integer,Symbol] offset : the offset, similar to +initialize+.
+    #   The symbols :earliest_offset and :latest_offset are explicitly okay.
+    #
+    # @return [Nil]
+    def seek_to_offset(new_offset)
+      @offset = new_offset
+      nil
+    end
+      
     # Close the connection to the kafka broker
     #
     # @return [Nil]

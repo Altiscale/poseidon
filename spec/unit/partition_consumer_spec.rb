@@ -39,6 +39,10 @@ RSpec.describe PartitionConsumer do
         pc = PartitionConsumer.new("test_client", "localhost", 9092, "test_topic",
                                    0, :earliest_offset)
         expect(pc.next_offset).to eq(100)
+        pc.seek_to_offset(55)
+        expect(pc.next_offset).to eq(55)
+        pc.seek_to_offset(:earliest_offset)
+        expect(pc.next_offset).to eq(100) # as before
       end
     end
 
