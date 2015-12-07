@@ -53,11 +53,3 @@ module Poseidon
     end
   end
 end
-
-
-# FIXME
-if __FILE__ == $PROGRAM_NAME
-  hasher = Poseidon::PartitionHasher.new 50
-  puts "foobar: #{hasher.partition_for('foobar')}"
-  puts "baz: #{hasher.partition_for('baz')}"
-end

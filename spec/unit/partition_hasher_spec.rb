@@ -27,4 +27,14 @@ RSpec.describe PartitionHasher do
       expect(part).to eq(expected_part)
     end
   end
+
+  it 'should handle a one partition case well' do
+    rnd = Random.new RSpec.configuration.seed
+    hasher = PartitionHasher.new 1
+    100.times do |size|
+      key = rnd.bytes(size)
+      expect(hasher.partition_for key).to eq(0)
+    end
+  end
+    
 end
