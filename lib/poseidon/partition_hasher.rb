@@ -3,6 +3,7 @@
 #  https://github.com/mumrah/kafka-python/blob/master/kafka/partitioner/hashed.py#L40     (Python client)
 
 module Poseidon
+  # Partition hasher compatible with the Java Client.
   class PartitionHasher
     def initialize(num_partitions)
       @partitions = num_partitions
@@ -16,7 +17,7 @@ module Poseidon
     private
 
     def self.murmur2_hash(str)
-      data = str.to_s.bytes
+      data = str.to_s.bytes.to_a
 
       length = data.length
       # Magic MurMur constants.
